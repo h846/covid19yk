@@ -1,6 +1,6 @@
-# covid19yk
+# frontend
 
-> My transcendent Nuxt.js project
+> My striking Nuxt.js project
 
 ## Build Setup
 

@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, make_response, current_app, jsonify
+from flask import Flask
 from flask_cors import CORS
 
 api = Flask(__name__)
@@ -8,5 +8,9 @@ CORS(api)
 def hello():
     return "Hello World!"
 
+@api.route("/test")
+def test():
+    return "TEST WORKS"
+
 if __name__ == "__main__":
-    api.run(host='localhost', port=8080)
+    api.run()

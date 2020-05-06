@@ -1,51 +1,39 @@
 <template>
-  <section>
-    <div class="container">
-      <div>
-        <input type="button" @click="getJSON" value="Get JSON">
-        <PieChart :chartdata="chartdata" :options="options" />
+  <div class="container">
+    <div>
+      <logo />
+      <h1 class="title">
+        Progressive Yassi's App
+      </h1>
+      <h2 class="subtitle">
+        My striking Nuxt.js project
+      </h2>
+      <div class="links">
+        <a
+          href="https://nuxtjs.org/"
+          target="_blank"
+          class="button--green"
+        >
+          Documentation
+        </a>
+        <a
+          href="https://github.com/nuxt/nuxt.js"
+          target="_blank"
+          class="button--grey"
+        >
+          GitHub
+        </a>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
-import PieChart from '~/components/PieChart.vue'
-
-import axios from 'axios'
 
 export default {
   components: {
-    Logo,
-    PieChart
-  },
-  data: function(){
-    return {
-      message : 'Yay',
-      chartdata: {
-        labels: ['20代', '30代', '40代'],
-        datasets: [{
-          data: [10, 20, 30],
-          backgroundColor: [
-              "#BB5179",
-              "#FAFF67",
-              "#58A27C"
-          ]
-        }]
-      },
-      options: {
-        title: {display:true, text: '現在の陽性患者数'},
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    }
-  },
-  methods : {
-    getJSON : function(){
-      axios.get('http://84log.net/api/test')
-        .then(responce => this.message = responce.data)
-    }
+    Logo
   }
 }
 </script>
@@ -65,9 +53,17 @@ export default {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 24px;
+  font-size: 100px;
   color: #35495e;
   letter-spacing: 1px;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
 }
 
 .links {

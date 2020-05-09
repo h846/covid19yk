@@ -3,7 +3,7 @@
     <div class="container">
       <div>
         <input type="button" @click="getJSON" value="Get JSON">
-        <PieChart :chartdata="chartdata" :options="options" />
+        <PieChart :chart-data="chartdata" :options="options" />
       </div>
     </div>
   </section>
@@ -25,14 +25,20 @@ export default {
       message : 'Yay',
       chartdata: {
         labels: ['20代', '30代', '40代'],
-        datasets: [{
-          data: [10, 20, 30],
-          backgroundColor: [
+        datasets: [
+          {
+            data: [
+              10,
+              20,
+              30
+            ],
+            backgroundColor: [
               "#BB5179",
               "#FAFF67",
               "#58A27C"
-          ]
-        }]
+            ]
+          }
+        ]
       },
       options: {
         title: {display:true, text: '現在の陽性患者数'},
@@ -42,10 +48,23 @@ export default {
     }
   },
   methods : {
-    getJSON : function(){
-      axios.get('http://84log.net/api/test')
-        .then(responce => this.message = responce.data)
+    getJSON : async function(){
+      let res = await axios.get('http://84log.net/api/outbreak_per_ward')
+      //console.log(res.data)
+      let chartdata = {}
+      chartdata.labels = res.data.keys
+
+      chartdata.datasets = []
+      chartdata.datasets.push({data:res.data.vals})
+
+      this.chartdata = chartdata
+      
+      console.log(chartdata.labels)
+      console.log(chartdata.datasets[0].data)
     }
+  },
+  created: function(){
+    this.getJSON()
   }
 }
 </script>

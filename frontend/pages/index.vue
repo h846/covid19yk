@@ -1,4 +1,27 @@
 <template>
+<<<<<<< HEAD
+  <section>
+    <NavDrawer/>
+    <ContentBody/>
+  </section>
+</template>
+
+<script>
+import NavDrawer from '~/components/NavDrawer'
+import ContentBody from '~/components/ContentBody'
+
+export default {
+  components: {
+    NavDrawer,
+    ContentBody,
+  },
+  data: function(){
+    return {
+      message: 'Yay'
+    }
+  },
+  methods : {
+=======
   <div class="container">
     <div>
       <logo />
@@ -34,10 +57,14 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+>>>>>>> master
   }
 }
 </script>
 
+<<<<<<< HEAD
+<style></style>
+=======
 <style>
 .container {
   margin: 0 auto;
@@ -70,3 +97,4 @@ export default {
   padding-top: 15px;
 }
 </style>
+>>>>>>> master

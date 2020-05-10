@@ -5,7 +5,7 @@
 </template>
 <script>
 import axios from 'axios'
-import BarChart from '~/components/BarChart.vue'
+import BarChart from '~/components/core/BarChart.vue'
 
 export default {
   components: {

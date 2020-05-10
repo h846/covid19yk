@@ -20,6 +20,9 @@
   },
   "devDependencies": {
     "@mdi/font": "^5.1.45",
-    "@nuxtjs/vuetify": "^1.11.2"
+    "@mdi/js": "^5.1.45",
+    "@nuxtjs/vuetify": "^1.11.2",
+    "file-loader": "^6.0.0",
+    "material-design-icons-iconfont": "^5.0.1"
   }
 }

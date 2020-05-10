@@ -1,7 +1,14 @@
 <template>
-    <section>
+    <v-card class="px-7 pb-3" elevation="15" max-width="520">
+        <v-card-title v-text="cardtext"></v-card-title>
         <BarChart :chart-data="chartdata" :options="options"/>
-    </section>
+        <v-card-text>
+          <p class="display-1 text--primary">
+            合計: {{ totalVal }}人
+          </p>
+        </v-card-text>
+        <v-btn text :href="link.url">{{link.txt}}</v-btn>
+    </v-card>
 </template>
 <script>
 import axios from 'axios'
@@ -13,16 +20,21 @@ export default {
   },
   data: function(){
     return {
+      cardtext:"区ごとの陽性患者数",
+      link:{
+        txt: "出典：横浜市内の陽性患者の発生状況データ・相談件数",
+        url: "https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html"
+        },
       totalVal: 0,
       chartdata: {
         labels: [],
         datasets: [{}]
       },
       options: {
-        title: {display:true, text: '区別陽性患者数'},
+        //title: {display:true, text: '区別陽性患者数'},
         legend: {display: false},
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         plugins: {
         colorschemes: {
           scheme: 'brewer.Accent8'
@@ -39,7 +51,7 @@ export default {
 
       keys = res.data.keys
       keys.pop()
-      console.log(keys)
+      
       chartdata.labels = keys
 
       vals = res.data.vals
@@ -50,8 +62,6 @@ export default {
 
       this.chartdata = chartdata
       
-      console.log(chartdata.labels)
-      console.log(chartdata.datasets[0].data)
     }
   },
   created: function(){

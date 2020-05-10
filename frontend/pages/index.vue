@@ -1,23 +1,26 @@
 <template>
   <section>
-
-    <PatientNum/>
+    <NavDrawer/>
+    <ContentBody/>
   </section>
 </template>
 
 <script>
-import PatientNum from '~/components/charts/PatientNum'
+import NavDrawer from '~/components/NavDrawer'
+import ContentBody from '~/components/ContentBody'
 
 export default {
   components: {
-    PatientNum
+    NavDrawer,
+    ContentBody,
   },
   data: function(){
     return {
-      message: 'Yay',
+      message: 'Yay'
     }
   },
-  methods : {}
+  methods : {
+  }
 }
 </script>
 

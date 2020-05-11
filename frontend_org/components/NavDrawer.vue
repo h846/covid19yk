@@ -1,6 +1,10 @@
 <template>
+  <section>
+    <p>aaaa</p>
+  </section>
+<!--
     <v-navigation-drawer
-    　:permanent=perm
+    　permanent='true'
       app
     >
       <v-list dense>
@@ -22,13 +26,9 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    -->
 </template>
+
 <script>
-export default {
-  data: function(){
-    return {
-      perm: true
-    }
-  }
-}
+export default {}
 </script>

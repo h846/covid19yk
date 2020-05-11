@@ -1,7 +1,7 @@
 <template>
   <section>
     <NavDrawer/>
-    <ContentBody/>
+    <!--<ContentBody/>-->
   </section>
 </template>
 
@@ -13,6 +13,6 @@ export default {
   components: {
     NavDrawer,
     ContentBody
-    }
   }
+}
 </script>

@@ -26,11 +26,7 @@ def get_table_data():
         for th, td in zip(ths, tds):
             t_data[key][th.get_text()] = td.get_text()
     #print(json.dumps(t_data, ensure_ascii=False))
-<<<<<<< HEAD
     with open('/usr/share/nginx/covid19/backend/data.json', 'w') as f:
-=======
-    with open('./backend/data.json', 'w') as f:
->>>>>>> master
         json.dump(t_data, f, ensure_ascii=False)
 
 get_table_data()

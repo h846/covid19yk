@@ -1,13 +1,13 @@
 <template>
-    <v-card class="px-7 pb-3" elevation="15" max-width="520">
+    <v-card class="px-7 pb-3" elevation="10" width="600">
         <v-card-title v-text="cardtext"></v-card-title>
         <BarChart :chart-data="chartdata" :options="options"/>
         <v-card-text>
           <p class="display-1 text--primary">
             合計: {{ totalVal }}人
           </p>
+          <v-btn class="display-20" text :href="link.url">{{link.txt}}</v-btn>
         </v-card-text>
-        <v-btn text :href="link.url">{{link.txt}}</v-btn>
     </v-card>
 </template>
 <script>
@@ -36,10 +36,10 @@ export default {
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
-        colorschemes: {
-          scheme: 'brewer.Accent8'
+          colorschemes: {
+            scheme: 'brewer.Paired12'
+          }
         }
-      }
       }
     }
   },

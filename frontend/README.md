@@ -1,6 +1,6 @@
-# frontend
+# covid19info
 
-> My kickass Nuxt.js project
+> My impeccable Nuxt.js project
 
 ## Build Setup
 

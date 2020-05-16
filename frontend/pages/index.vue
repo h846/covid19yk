@@ -1,18 +1,25 @@
 <template>
-  <section>
-    <NavDrawer/>
-    <ContentBody/>
-  </section>
+  <b-container fluid="lg">
+    <b-row class="text-center justify-content-center">
+      <b-col sm="6" cols="12"><PatientNum/></b-col>
+      <b-col sm="6" cols="12"><PatientSituation/></b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
-import NavDrawer from '~/components/NavDrawer'
-import ContentBody from '~/components/ContentBody'
+
+import PatientNum from '~/components/charts/PatientNum'
+import PatientSituation from '~/components/charts/PatientSituation'
 
 export default {
   components: {
-    NavDrawer,
-    ContentBody
-    }
+    PatientNum,
+    PatientSituation
+    },
+    data () {
+      return {
+      }
+    },
   }
 </script>

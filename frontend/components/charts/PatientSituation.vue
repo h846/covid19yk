@@ -34,7 +34,7 @@ export default {
         }]
       },
       options: {
-        legend: {display: false},
+        legend: {display: true},
         maintainAspectRatio: true,
         plugins: {
           colorschemes: {

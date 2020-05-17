@@ -1,6 +1,10 @@
 
 export default {
   mode: 'universal',
+  server: {
+    port: 8080,
+    host: '0.0.0.0'
+  },
   /*
   ** Headers of the page
   */
@@ -29,7 +33,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/chartjs-plugin-colorschemes'
+    '~/plugins/chartjs-plugin-colorschemes',
+    '~/plugins/BootStrapIcons'
   ],
   /*
   ** Nuxt.js dev-modules

@@ -61,6 +61,7 @@ def get_table_data():
     tables = soup.find_all('table', class_='table01')
 
     for idx, key in enumerate(t_data):
+        
         if key == 'pcr_test_num':
             nums = tables[idx].find_all("td")
             t_data[key]['num'] = nums[8].get_text()#Total number of infections

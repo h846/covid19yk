@@ -6,10 +6,24 @@
         <b-button variant="primary" href="#">このサイトについて</b-button>
       </b-jumbotron>
     </div>
-    <b-row class="text-center justify-content-center">
+    <b-row>
+      <b-col>
+        <h1 class="h1">コロナ感染者状況</h1>
+      </b-col>
+    </b-row>
+    <b-row class="text-center justify-content-center mb-5">
       <b-col sm="5" cols="12" class="mb-4"><PatientNum/></b-col>
       <b-col sm="5" cols="12" class="mb-4"><PatientSituation/></b-col>
     </b-row>
+    <b-row>
+      <b-col><h1 class="h1">テイクアウト・デリバリー検索</h1></b-col>
+    </b-row>
+    <b-row class="justify-content-center">
+      <b-col cols="10"><TkotDeli/></b-col>
+    </b-row>
+
+    <div class="spacer"></div>
+
   </b-container>
 </template>
 
@@ -17,11 +31,13 @@
 
 import PatientNum from '~/components/charts/PatientNum'
 import PatientSituation from '~/components/charts/PatientSituation'
+import TkotDeli from '~/components/TkotDeli'
 
 export default {
   components: {
     PatientNum,
-    PatientSituation
+    PatientSituation,
+    TkotDeli
     },
     data () {
       return {
@@ -29,3 +45,7 @@ export default {
     },
   }
 </script>
+
+<style lang="sass">
+.spacer{margin-bottom: 200px;}
+</style>

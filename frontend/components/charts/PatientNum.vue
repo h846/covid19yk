@@ -4,6 +4,7 @@
   >
     <template v-slot:header>
         <h6 class="mb-0">合計: {{totalVal}}人</h6>
+        <span class="text-secondary small">最終更新: {{ updateTime }}</span>
     </template>
     <BarChart :chart-data="chartdata" :options="options"/>
     <template v-slot:footer>
@@ -22,6 +23,7 @@ export default {
   data: function(){
     return {
       cardTitle:"区ごとの陽性患者数",
+      updateTime: "",
       link:{
         txt: "出典：横浜市内の陽性患者の発生状況データ・相談件数",
         url: "https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html"
@@ -60,7 +62,9 @@ export default {
       chartdata.datasets.push({data:vals})
 
       this.chartdata = chartdata
-      
+      //JSONファイル更新時間取得
+      res = await axios.get('http://84log.net/api/updated')
+      this.updateTime = res.data
     }
   },
   created: function(){

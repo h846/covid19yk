@@ -46,16 +46,23 @@ def get_csv_data():# Yokohama takeout&deli csv
             "配送料",
             "店舗からのメッセージ",
             "メニュー1",
-            "税込価格",
+            "税込価格1",
             "メニュー2",
-            "税込価格",
+            "税込価格2",
             "メニュー3",
-            "税込価格",
+            "税込価格3",
             "その他のメニュー",
             "店舗ID",
             "変更フラグ"
         ]
 
+        #修正済の重複対応
+        for idx, items in enumerate(templist):
+            if len(templist) < idx:
+                break
+            if items[1] =="修正依頼":
+                templist.pop(idx-1)
+        
         #create new list body
         body_list = []
         row = []
@@ -78,6 +85,7 @@ def get_csv_data():# Yokohama takeout&deli csv
                     row.append(adrs)
                 elif idx == 4:#経度緯度
                     continue
+                
                 else:
                     row.append(item)
 

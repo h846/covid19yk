@@ -1,14 +1,9 @@
 <template>
   <b-container fluid="lg">
-    <div>
-      <b-jumbotron header="コロナ対策情報横浜" lead="Bootstrap v4 Components for Vue.js 2">
-        <p>For more information visit website</p>
-        <b-button variant="primary" href="#">このサイトについて</b-button>
-      </b-jumbotron>
-    </div>
+    <BackToTop/>
     <b-row>
       <b-col>
-        <h1 class="h1">コロナ感染者状況</h1>
+        <h1 class="h1">市内の最新感染動向</h1>
       </b-col>
     </b-row>
     <b-row class="text-center justify-content-center mb-5">
@@ -33,8 +28,11 @@ import PatientNum from '~/components/charts/PatientNum'
 import PatientSituation from '~/components/charts/PatientSituation'
 import TkotDeli from '~/components/TkotDeli'
 
+import BackToTop from '~/components/BackToTop'
+
 export default {
   components: {
+    BackToTop,
     PatientNum,
     PatientSituation,
     TkotDeli
@@ -43,9 +41,14 @@ export default {
       return {
       }
     },
+    methods: {
+
+    }
   }
 </script>
 
-<style lang="sass">
-.spacer{margin-bottom: 200px;}
+<style lang="scss">
+.spacer{
+  margin-bottom: 200px;
+}
 </style>

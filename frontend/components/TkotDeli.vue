@@ -1,5 +1,5 @@
 <template>
-<section>
+<section id="tk-deli-search">
     <b-tabs content-class="mt-3">
         <!-- Free Word Search Form -->
         <b-tab title="フリーワード検索">
@@ -8,11 +8,11 @@
                     <b-form-input
                         type="text"
                         id="freeword_search"
-                        v-model="frwd_srch"
+                        v-model="frwdResult"
                         placeholder="フリーワード検索"
                     ></b-form-input>
                     <b-input-group-append>
-                        <b-button variant="primary"><b-icon icon="search" class="pr-1"></b-icon>検索</b-button>
+                        <b-button variant="primary"><b-icon icon="search" class="pr-1" @click="runSearch(frwdResult)"></b-icon>検索</b-button>
                     </b-input-group-append>
                 </b-input-group>
             </b-form-group>
@@ -21,12 +21,12 @@
         <b-tab title="店舗検索" active>
             <b-card bg-variant="light">
                 <b-row>
-                    <b-col>
+                    <b-col sm="6" cols="12">
                         <b-form-group label-cols-sm="4" label="区名:" label-for="ward">
                             <b-form-select id="ward" v-model="selected_ward" :options="ward_options"></b-form-select>
                         </b-form-group>
                     </b-col>
-                    <b-col>
+                    <b-col sm="6" cols="12">
                         <b-form-group label-cols-sm="4" label="料理ジャンル:" label-for="category">
                             <b-form-select id="category" v-model="selected_category" :options="category_options"></b-form-select>
                         </b-form-group>
@@ -34,7 +34,7 @@
                 </b-row>
 
                 <b-row>
-                    <b-col cols="8">
+                    <b-col sm="6" cols="12">
                         <b-form-group
                             label-cols-sm="3"
                             label="提供方法"
@@ -47,15 +47,15 @@
                             ></b-form-radio-group>
                         </b-form-group>
                     </b-col>
-                    <b-col class="text-right">
-                        <b-button variant="primary" size="lg" href="#" @click="advSearch(selected_ward, selected_category, selected_tord)">検 索</b-button>
+                    <b-col class="text-right" sm="6" cols="12">
+                        <b-button variant="primary" size="lg" href="#" @click="runSearch(selected_ward, selected_category, selected_tord)">検 索</b-button>
                     </b-col>
                 </b-row>
             </b-card>
         </b-tab>
     </b-tabs>
 
-    <DataTable :result="advResult" class="mt-3"/>
+    <DataTable :result="results" class="mt-3"/>
 
 </section>
 </template>
@@ -69,8 +69,13 @@ export default {
     },
     data: function(){
         return {
-            frwd_srch: "",
-            advResult: "",
+            frwdResult: "",
+            results: {
+                "frwd":null,
+                "ward":null,
+                "category":null,
+                "TorD":null
+            },
             selected_ward: null,
             selected_category: null,
             selected_tord: null,
@@ -122,14 +127,18 @@ export default {
         }
     },
     methods: {
-        onSubmit: function(){
-            alert("submitted!")
-        },
-        advSearch: function(ward, category, TorD){
-            this.advResult = {
-                "ward":ward,
-                "category":category,
-                "TorD":TorD
+        runSearch: function(...args){
+
+            if(args.length == 1){
+                this.results = {
+                    "frwd":args[0]
+                }
+            }else if(args.length == 3){
+                this.results = {
+                    "ward":args[0],
+                    "category":args[1],
+                    "TorD":args[2]
+                }
             }
         }
     }

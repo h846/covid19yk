@@ -1,13 +1,109 @@
 <template>
     <section>
         <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
-            項目を一つ以上選択してください！
+            {{ alertMsg }}
         </b-alert>
-        <b-table
+        <b-table responsive
             :fixed = "t_fixed"
             :items = "items"
             :fields = "fields"
         >
+
+        <template v-slot:cell(show_details)="row">
+            <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+                <span>詳細を</span>{{ row.detailsShowing ? '隠す' : '表示'}}
+            </b-button>
+
+        </template>
+
+        <template v-slot:row-details="row">
+            <b-card>
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>住所:</b></b-col>
+                    <b-col>{{ row.item['店舗住所'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>地図:</b></b-col>
+                    <b-col><a :href="'https://www.google.com/maps/search/?api=1&query='+row.item['店舗住所']" target="_blank">地図</a></b-col>
+                </b-row>
+
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>電話番号:</b></b-col>
+                    <b-col>{{ row.item['電話番号'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>最寄駅:</b></b-col>
+                    <b-col>{{ row.item['最寄駅'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>提供条件</b></b-col>
+                    <b-col>{{ row.item['提供条件'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>定休日:</b></b-col>
+                    <b-col>{{ row.item['定休日'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>ウェブサイト:</b></b-col>
+                    <b-col><a :href="row.item['ウェブサイト']" target="_blank">{{ row.item['ウェブサイト'] }}</a></b-col>
+                </b-row>
+
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>SNS:</b></b-col>
+                    <b-col><a :href="row.item['SNS']" target="_blank">{{ row.item['SNS'] }}</a></b-col>
+                </b-row>
+
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>配送料</b></b-col>
+                    <b-col>{{ row.item['配送料'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-4">
+                    <b-col sm="3" class="text-sm-right"><b>店舗からのメッセージ:</b></b-col>
+                    <b-col>{{ row.item['店舗からのメッセージ'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-0">
+                    <b-col sm="3" class="text-sm-right"><b>メニュー１</b></b-col>
+                    <b-col>{{ row.item['メニュー1'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-4">
+                    <b-col sm="3" class="text-sm-right"><b>税込価格</b></b-col>
+                    <b-col>{{ row.item['税込価格1'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-0">
+                    <b-col sm="3" class="text-sm-right"><b>メニュー2</b></b-col>
+                    <b-col>{{ row.item['メニュー2'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-4">
+                    <b-col sm="3" class="text-sm-right"><b>税込価格</b></b-col>
+                    <b-col>{{ row.item['税込価格2'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-0">
+                    <b-col sm="3" class="text-sm-right"><b>メニュー3</b></b-col>
+                    <b-col>{{ row.item['メニュー3'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-4">
+                    <b-col sm="3" class="text-sm-right"><b>税込価格</b></b-col>
+                    <b-col>{{ row.item['税込価格'] }}</b-col>
+                </b-row>
+
+                <b-row class="mb-2">
+                    <b-col sm="3" class="text-sm-right"><b>その他のメニュー</b></b-col>
+                    <b-col>{{ row.item['その他のメニュー'] }}</b-col>
+                </b-row>
+            </b-card>
+        </template>
 
         </b-table>
     </section>
@@ -16,10 +112,13 @@
 import axios from 'axios'
 
 export default {
-    props:['result'],
+    props:{
+        result: Object
+    },
     data: function(){
         return {
             loading: true,
+            alertMsg: "",
             showDismissibleAlert: false,
             t_fixed: true,
             org_items: [],
@@ -45,6 +144,8 @@ export default {
                 }
             }
 
+            this.fields.push({key:"show_details",label:"詳細"})
+
             let newBodyObj = {}
             let newBodyAry = []
 
@@ -67,11 +168,35 @@ export default {
   },
   watch: {
       result: function(val){
+          //フリーワード検索の場合
+          if("frwd" in val){
+              if(val.frwd == null || val.frwd == undefined || val.frwd == ""){
+                  this.alertMsg = "検索キーワードを入力してください"
+                  this.showDismissibleAlert = true;
+                  return
+              }
+              let results = [], item = ""
+
+              for(let i in this.org_items){
+                  for(let j in this.org_items[i]){
+                      item = this.org_items[i][j]
+
+                      if(item.indexOf(val.frwd) !== -1){
+                          results.push(this.org_items[i])
+                      }
+                      //console.log(item)
+                  }
+              }
+              this.items = results
+              return;
+          }
+          // 通常店舗検索の場合
           let ward = val.ward
           let category = val.category
           let TorD = val.TorD
 
           if(ward == null && category == null && TorD == null){
+              this.alertMsg = "項目を一つ以上選択してください"
               this.showDismissibleAlert = true;
               return 0;
           }

@@ -3,8 +3,8 @@ import json
 import os
 from datetime import datetime
 
-from getdata.getTODeliData import get_csv_data
-from getdata.getCoronaData import get_table_data
+from backend.getdata.getTODeliData import get_csv_data
+from backend.getdata.getCoronaData import get_table_data
 
 json_data = {"updated":str(datetime.now().strftime("%Y/%m/%d %H:%M"))}
 json_data.update( get_csv_data() )

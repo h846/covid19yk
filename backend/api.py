@@ -9,9 +9,9 @@ api = Flask(__name__)
 api.config["JSON_AS_ASCII"] = False #文字化け対策
 CORS(api)
 
-@api.route("/")
+@api.route("/usage")
 def hello():
-    return "usage: http://84log.net/api/[the_data_you_want]"
+    return "usage: https://84log.net/api/[the_data_you_want]"
 
 @api.route("/api/<name>", methods=['GET'])
 def get_json(name):
@@ -25,7 +25,7 @@ def get_json(name):
 
     if name in "updated":
         #time = str(raw_data["updated"])
-        return jsonify(raw_data)
+        return jsonify(raw_data["updated"])
 
     if name in ('patient_situation', 'outbreak_per_ward', 'pcr_test_num'):
         proc_data = raw_data[name]

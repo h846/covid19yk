@@ -128,7 +128,7 @@ export default {
     },
     methods: {
         getJSON : async function(){
-            let res = await axios.get('http://84log.net/api/shop_list')
+            let res = await axios.get('https://84log.net/api/shop_list')
 
             let fields = res.data.header
             let items = res.data.body

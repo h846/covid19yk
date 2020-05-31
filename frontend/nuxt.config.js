@@ -9,7 +9,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'テイクアウト・デリバリー検索ーコロナ対策情報横浜 | ヤシログ' || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
@@ -57,7 +57,11 @@ export default {
     ['bootstrap-vue/nuxt', { css: false }],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/google-analytics',
   ],
+  googleAnalytics: {
+    id: 'UA-78352500-4'
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

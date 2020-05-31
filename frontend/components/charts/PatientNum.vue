@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     getJSON : async function(){
-      let res = await axios.get('http://84log.net/api/outbreak_per_ward')
+      let res = await axios.get('https://84log.net/api/outbreak_per_ward')
       let chartdata = {}
       let keys, vals, totalVal
 
@@ -63,7 +63,7 @@ export default {
 
       this.chartdata = chartdata
       //JSONファイル更新時間取得
-      res = await axios.get('http://84log.net/api/updated')
+      res = await axios.get('https://84log.net/api/updated')
       this.updateTime = res.data
     }
   },

@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     getJSON : async function(){
-      let res = await axios.get('http://84log.net/api/patient_situation')
+      let res = await axios.get('https://84log.net/api/patient_situation')
 
       let labels, data, total
       labels = res.data.keys
@@ -60,7 +60,7 @@ export default {
       this.sortData(labels, data)
 
       //JSONファイル更新時間取得
-      res = await axios.get('http://84log.net/api/updated')
+      res = await axios.get('https://84log.net/api/updated')
       this.updateTime = res.data
     },
     //Data Sorting

@@ -47,8 +47,8 @@
                             ></b-form-radio-group>
                         </b-form-group>
                     </b-col>
-                    <b-col class="text-right" sm="6" cols="12">
-                        <b-button variant="primary" size="lg" href="#" @click="runSearch(selected_ward, selected_category, selected_tord)">検 索</b-button>
+                    <b-col class="mt-3" sm="6" cols="12">
+                        <b-button variant="primary" href="#" style="width:100%" @click="runSearch(selected_ward, selected_category, selected_tord)">検 索</b-button>
                     </b-col>
                 </b-row>
             </b-card>

@@ -249,8 +249,7 @@ export default {
             console.log("works")
             for(let i in this.org_items){
                 for(let j in this.org_items[i]){
-                    item = this.org_items[i][j]
-                    item = item.trim()
+                    item = String(this.org_items[i][j]).trim()
                     if(item.indexOf(wrd) !== -1){
                         results.push(this.org_items[i])
                     }
@@ -258,8 +257,14 @@ export default {
             }
 
             this.items = results;
+            this.frwdResult = null;
         },
         advSearch: function(argWard, argCategory, argTorD){
+            /*
+            this.selected_ward=null;
+            this.selected_category=null;
+            this.selected_tord=null;
+            */
             let ward = argWard
             let category = argCategory
             let TorD = argTorD
@@ -276,8 +281,7 @@ export default {
                 
                 for(let i in this.org_items){
                     items = this.org_items[i]
-
-                    if(items['区名'].indexOf(ward) !== -1){
+                    if(items['区名'] == ward){
                         results.push(items)
                     }
                 }
@@ -301,20 +305,20 @@ export default {
             }
 
             if(TorD !=null){
-                    let lists = results.length > 0 ? results : this.org_items
+                    let lists = ward != null || category != null ? results : this.org_items
                     let sub_results = []
 
                     for(let i in lists){
                         items = lists[i]
 
-                        if(TorD == "テイクアウト"){
-                            if(items['テイクアウト'].indexOf("はい") !== -1){
+                        if(TorD == 'テイクアウト'){
+                            if(items['テイクアウト'].indexOf('はい') !== -1){
                                 sub_results.push(items)
                             }
                         }
 
-                        if(TorD == "デリバリー"){
-                            if(items['デリバリー'].indexOf("はい") !== -1){
+                        if(TorD == 'デリバリー'){
+                            if(items['デリバリー'].indexOf('はい') !== -1){
                                 sub_results.push(items)
                             }
                         }
@@ -324,6 +328,7 @@ export default {
             }
 
             this.items = results
+
         },
         getJSON : async function(){
             let res = await axios.get('https://84log.net/api/shop_list')

@@ -28,6 +28,14 @@
         </b-row>
 
         <b-row>
+            <b-card title="データソース" class="my-3 mx-auto" style="width: 600px">
+                <b-card-text>
+                    <p>データソースには<a href="https://www.city.yokohama.lg.jp/business/kigyoshien/syogyo/covid-19/takeout-delivery/takeout.html">横浜市オープンデータ</a>を使用しています。</p>
+                </b-card-text>
+            </b-card>
+        </b-row>
+
+        <b-row>
             <b-card title="免責事項" class="my-3 mx-auto" style="max-width: 600px">
                 <b-card-text>
                     <p>当サイトに掲載されている情報の正確性については万全を期していますが、当サイト開発者は利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。</p>

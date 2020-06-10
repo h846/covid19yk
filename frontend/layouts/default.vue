@@ -1,7 +1,7 @@
 <template>
   <div>
-    <NavBar class="mb-5"/>
-    <nuxt />
+    <NavBar/>
+    <nuxt class="pt-3"/>
   </div>       
 </template>
 <script>

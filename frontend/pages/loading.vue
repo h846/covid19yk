@@ -1,0 +1,49 @@
+<template>
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner">aaa</span>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    data: function(){
+        return {
+            show: true
+        }
+    }
+}
+</script>
+<style lang="scss" scoped>
+#overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height:100%;
+    display: none;
+    background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spinner {
+    width: 80px;
+    height: 80px;
+    border: 4px #ddd solid;
+    border-top: 4px #999 solid;
+    border-radius: 50%;
+    animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+}
+.is-hide{
+    display:none;
+}
+</style>

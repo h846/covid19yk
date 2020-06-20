@@ -9,7 +9,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'テイクアウト・デリバリー検索ーコロナ対策情報横浜 | ヤシログ' || '',
+    title: '野毛 桜木町 テイクアウト・デリバリー検索 | ヤシログ' || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },

@@ -1,46 +1,58 @@
 <template>
-  <section>
-    <div>
-      About page
-    </div>
-  </section>
-</template>
+    <b-container fluid="lg" class="bg-light">
+        <b-row>
+            <b-card title="このサイトについて" class="mt-5 mb-3 mx-auto" style="max-width: 600px">
+                <b-card-text>
+                    <p></p>
+                    <p>当サイトは新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、個人が開設したものです。</p>
+                    <p>横浜市による公式情報と客観的な数値をわかりやすく伝えることで、横浜市にお住まいの方や、横浜市内に拠点を持つ企業の方、横浜市を訪れる方が、現状を把握して適切な対策を取れるようにすることを目的としています。</p>
+                    <p>このサイトは、横浜市が管理しているものではありません。</p>
+                </b-card-text>
+            </b-card>
+        </b-row>
 
-<script>
+        <b-row>
+            <b-card title="ブラウザ環境について" class="my-3 mx-auto" style="max-width: 600px">
+                <b-card-text>
+                    <p>当サイトは以下の環境でご覧いただくことを推奨いたします。</p>
+                    <ul>
+                        <li>Microsoft Edge 最新版</li>
+                        <li>Mozilla Firefox 最新版</li>
+                        <li>Google Chrome 最新版（Windows 10以上, Android 8.0以上）</li>
+                        <li>Safari 最新版（macOS, iOS）</li>
+                        <li>Opera Software ASA Opera 最新版</li>
+                    </ul>
+                    <span>推奨環境以外で利用された場合や、推奨環境下でもご利用のブラウザの設定等によっては、<br/>正しく表示されない場合がありますのでご了承ください。</span>
+                </b-card-text>
+            </b-card>
+        </b-row>
 
-export default {
-}
-</script>
+        <b-row>
+            <b-card title="データソース" class="my-3 mx-auto" style="width: 600px">
+                <b-card-text>
+                    <p>データソースには<a href="https://www.city.yokohama.lg.jp/business/kigyoshien/syogyo/covid-19/takeout-delivery/takeout.html">横浜市オープンデータ</a>を使用しています。</p>
+                </b-card-text>
+            </b-card>
+        </b-row>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+        <b-row>
+            <b-card title="免責事項" class="my-3 mx-auto" style="max-width: 600px">
+                <b-card-text>
+                    <p>当サイトに掲載されている情報の正確性については万全を期していますが、当サイト開発者は利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。</p>
+                    <p>また、利用者が当サイトを利用したことにより発生した利用者の損害及び利用者が第三者に与えた損害に対して、責任を負うものではありません。</p>
+                    <p>当サイトに掲載されている情報は、予告なしに変更又は削除することがあります。</p>
+                </b-card-text>
+            </b-card>
+        </b-row>
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+        <b-row>
+            <b-card title="運営者" class="my-3 mx-auto" style="width: 600px">
+                <b-card-text>
+                    <p>email: <a href="mailto:h846@outlook.com">h846@outlook.com</a></p>
+                    <p>blog: <a href="http://wp.84log.net">ヤシログ</a></p>
+                </b-card-text>
+            </b-card>
+        </b-row>
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
+    </b-container>
+</template>

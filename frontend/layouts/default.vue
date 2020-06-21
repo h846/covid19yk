@@ -1,7 +1,15 @@
 <template>
-  <v-app>
-    <nuxt />
-  </v-app>
+  <div>
+    <NavBar/>
+    <nuxt class="pt-3"/>
+  </div>       
 </template>
+<script>
+import NavBar from '~/components/NavBar'
 
-<style></style>
+export default {
+  components:{
+    NavBar
+  }
+}
+</script>

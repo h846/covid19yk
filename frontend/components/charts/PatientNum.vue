@@ -1,14 +1,16 @@
 <template>
-    <v-card class="px-7 pb-3" elevation="15" max-width="520">
-        <v-card-title v-text="cardtext"></v-card-title>
-        <BarChart :chart-data="chartdata" :options="options"/>
-        <v-card-text>
-          <p class="display-1 text--primary">
-            合計: {{ totalVal }}人
-          </p>
-        </v-card-text>
-        <v-btn text :href="link.url">{{link.txt}}</v-btn>
-    </v-card>
+  <b-card
+    :title="cardTitle"
+  >
+    <template v-slot:header>
+        <h6 class="mb-0">合計: {{totalVal}}人</h6>
+        <span class="text-secondary small">最終更新: {{ updateTime }}</span>
+    </template>
+    <BarChart :chart-data="chartdata" :options="options"/>
+    <template v-slot:footer>
+        <b-link :href="link.url" class="text-secondary small">{{ link.txt }}</b-link>
+    </template>
+  </b-card>
 </template>
 <script>
 import axios from 'axios'
@@ -20,7 +22,8 @@ export default {
   },
   data: function(){
     return {
-      cardtext:"区ごとの陽性患者数",
+      cardTitle:"区ごとの陽性患者数",
+      updateTime: "",
       link:{
         txt: "出典：横浜市内の陽性患者の発生状況データ・相談件数",
         url: "https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html"
@@ -31,21 +34,19 @@ export default {
         datasets: [{}]
       },
       options: {
-        //title: {display:true, text: '区別陽性患者数'},
         legend: {display: false},
-        responsive: true,
         maintainAspectRatio: true,
         plugins: {
-        colorschemes: {
-          scheme: 'brewer.Accent8'
+          colorschemes: {
+            scheme: 'brewer.Paired12'
+          }
         }
-      }
       }
     }
   },
   methods: {
     getJSON : async function(){
-      let res = await axios.get('http://84log.net/api/outbreak_per_ward')
+      let res = await axios.get('https://84log.net/api/outbreak_per_ward')
       let chartdata = {}
       let keys, vals, totalVal
 
@@ -61,7 +62,9 @@ export default {
       chartdata.datasets.push({data:vals})
 
       this.chartdata = chartdata
-      
+      //JSONファイル更新時間取得
+      res = await axios.get('https://84log.net/api/updated')
+      this.updateTime = res.data
     }
   },
   created: function(){

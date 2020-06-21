@@ -1,22 +1,23 @@
 <template>
-  <b-container fluid="lg">
-    <!-- トップへ戻るボタン -->
-    <BackToTop/>
+  <b-container fluid>
     <!--ジャンボトロン-->
     <b-row class="justify-content-center">
-      <b-col cols="10">
-        <b-jumbotron class="bg">
-          <template v-slot:header>テイクアウトデリバリー野毛・桜木町</template>
+      <b-col sm="10">
+        <b-jumbotron class="jumbo">
+
+          <template v-slot:header header-level="4">
+            テイクアウト デリバリー <br/>野毛 桜木町 みなとみらい
+          </template>
 
           <template v-slot:lead>
-            野毛・桜木町近辺でテイクアウト、デリバリーに対応している飲食店をリスト化しました
+            桜木町駅近辺の野毛・みなとみらいでテイクアウト、デリバリーに対応している飲食店をリスト化
           </template>
 
           <p class="ts">
-            横浜全域の検索も対応。新型コロナウィルス感染症動向も確認できます。
+            横浜全域の検索も対応。<br/>新型コロナウィルス感染症動向も確認できます。
           </p>
           <b-button-group>
-            <b-button variant="warning" @click="chgContents('noge')">野毛・桜木町ショップリスト</b-button>
+            <b-button variant="warning" @click="chgContents('noge')">野毛・みなとみらいショップリスト</b-button>
             <b-button variant="success" @click="chgContents('yokohama')">テイクアウトデリバリー横浜全域検索</b-button>
             <b-button variant="primary" @click="chgContents('infection')">新型コロナウィルス感染動向</b-button>
           </b-button-group>
@@ -26,13 +27,13 @@
     <!-- 野毛ショップリスト -->
     <section v-if="isShow === 'noge'">
       <b-row align-h="center" class="my-3">
-        <b-col cols="10">
-          <p class="h1">野毛ショップリスト検索</p>
+        <b-col sm="10">
+          <h2>野毛・みなとみらいショップリスト</h2>
         </b-col>
       </b-row>
 
       <b-row class="justify-content-center">
-        <b-col cols="10">
+        <b-col sm="10">
           <NogeList/>
         </b-col>
       </b-row>
@@ -41,12 +42,12 @@
     <section v-else-if="isShow === 'yokohama'">
       <b-row align-h="center" class="my-3">
         <b-col cols="10">
-          <p class="h1">横浜市テイクアウト・デリバリー検索</p>
+          <h2>横浜市テイクアウト・デリバリー検索</h2>
         </b-col>
       </b-row>
 
       <b-row class="justify-content-center">
-        <b-col cols="10"><TakeoutDeli/></b-col>
+        <b-col sm="10"><TakeoutDeli/></b-col>
       </b-row>
     </section>
 
@@ -54,7 +55,7 @@
     <section v-else-if="isShow === 'infection'">
       <b-row align-h="center" class="mb-3">
           <b-col cols="10">
-              <p class="h1">横浜市内の最新感染動向</p>
+              <h2>横浜市内の最新感染動向</h2>
           </b-col>
       </b-row>
       <b-row class="text-center justify-content-center mb-5">
@@ -74,11 +75,8 @@ import NogeList from '~/components/NogeList'
 import PatientNum from '~/components/charts/PatientNum'
 import PatientSituation from '~/components/charts/PatientSituation'
 
-import BackToTop from '~/components/BackToTop'
-
 export default {
   components: {
-    BackToTop,
     TakeoutDeli,
     NogeList,
     PatientNum,
@@ -109,11 +107,33 @@ export default {
   cursor: pointer;
 }
 
-.bg{
+.jumbo{
+  h1 { font-size: 2.5rem; margin-bottom: 10px;}
+  .lead{ font-size: 1.0rem;}
   color: #FFF;
-  background: no-repeat #616161 url("~assets/img/bg.jpg");
+  max-height: 450px;
+  background: center no-repeat #616161 url("~assets/img/bg.jpg");
   background-blend-mode: soft-light;
   background-size: cover;
+}
+
+@media screen and (max-width: 650px) {
+  .jumbo{
+    h1 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .lead{
+      font-size: 0.8rem;
+    }
+    .lead + p {
+      margin-bottom: 20px;
+    }
+    button{
+      font-size: 0.7rem;
+    }
+    font-size: 0.8rem;
+  }
 }
 
 .ts{

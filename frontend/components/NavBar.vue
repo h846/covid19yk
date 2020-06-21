@@ -1,15 +1,11 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="primary" style="margin-bottom: 30px;">
-    <b-navbar-brand to="/">野毛 桜木町 テイクアウト デリバリー検索</b-navbar-brand>
+    <b-navbar-brand to="/" style="font-size: 1rem">テイクアウト デリバリー 野毛 桜木町</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        
-        <b-nav-item to="/infectInfo">
-          感染者の状況
-        </b-nav-item>
 
         <b-nav-item to="/about">
           このサイトについて

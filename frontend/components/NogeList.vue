@@ -1,10 +1,15 @@
 <template>
     <b-overlay :show="showOverlay" spinner-variant="primary">
         <section>
-            <b-table responsive
+            <b-table
+                id="ng-shop-table" 
+                stacked="sm"
+                :striped = "isStriped"
                 :fixed = "t_fixed"
                 :items = "items"
                 :fields = "fields"
+                :per-page="perPage"
+                :current-page="currentPage"
             >
 
             <template v-slot:cell(show_details)="row">
@@ -104,6 +109,17 @@
             </template>
 
             </b-table>
+
+            <!-- PAGE NATION-->
+            <b-pagination
+                v-model="currentPage"
+                :per-page="perPage"
+                :total-rows="totalRows"
+                aria-controls="ng-shop-table"
+                size="lg"
+                class="justify-content-center"
+            >
+            </b-pagination>
         </section>
     </b-overlay>
 </template>
@@ -116,6 +132,10 @@ export default {
         return {
             showOverlay: false,
             t_fixed: true,
+            isStriped: true,
+            perPage: '5',
+            currentPage:'1',
+            totalRows: 0,
             org_items: [],
             items: [],
             fields: []
@@ -155,8 +175,18 @@ export default {
                 newBodyObj = {}
             }
 
-            this.items = newBodyAry;
+            //Array Filtering.
+            //if nearest station of the shop is Sakuragi-cho, push to array it.
+            this.items = newBodyAry.filter(item => 
+            item['最寄駅'] == '桜木町' ||
+            item['最寄駅'] == 'みなとみらい' ||
+            item['最寄駅'] == '日ノ出町'
+            )
+
             Object.assign(this.org_items, this.items)
+
+            //for pagination
+            this.totalRows = this.items.length
 
             this.showOverlay = false;
 

@@ -9,7 +9,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: '野毛 桜木町 テイクアウト・デリバリー検索 | ヤシログ' || '',
+    title: '野毛 桜木町 みなとみらい テイクアウト・デリバリー検索 | ヤシログ' || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
@@ -19,18 +19,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script:[
-      {
-        src: "https://code.jquery.com/jquery-3.5.1.slim.js",
-        integrity: "sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=",
-        crossorigin: "anonymous",
-        type: "text/javascript"
-    }
-  ]
+
+    ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
   /*
   ** Global CSS
   */

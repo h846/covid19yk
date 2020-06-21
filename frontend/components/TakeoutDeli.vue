@@ -61,10 +61,15 @@
             <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
                 {{ alertMsg }}
             </b-alert>
-            <b-table responsive
+            <b-table
+                id="yk-shop-list"
+                stacked="sm"
+                :striped = "isStriped"
                 :fixed = "t_fixed"
                 :items = "items"
                 :fields = "fields"
+                :per-page="perPage"
+                :current-page="currentPage"
             >
 
             <template v-slot:cell(show_details)="row">
@@ -164,6 +169,17 @@
             </template>
 
             </b-table>
+
+            <!-- PAGE NATION-->
+            <b-pagination
+                v-model="currentPage"
+                :per-page="perPage"
+                :total-rows="totalRows"
+                aria-controls="yk-shop-table"
+                size="lg"
+                class="justify-content-center"
+            >
+            </b-pagination>
         </section>
     </b-overlay>
 </section>
@@ -175,6 +191,10 @@ import axios from 'axios'
 export default {
     data: function(){
         return {
+            isStriped: true,
+            perPage: '5',
+            currentPage:'1',
+            totalRows: 0,
             frwdResult: "",
             selected_ward: null,
             selected_category: null,
@@ -254,6 +274,9 @@ export default {
 
             this.items = results;
             this.frwdResult = null;
+
+            //for pagination
+            this.totalRows = this.items.length
         },
         advSearch: function(argWard, argCategory, argTorD){
             /*
@@ -325,6 +348,8 @@ export default {
 
             this.items = results
 
+            //for pagination
+            this.totalRows = this.items.length
         },
         getJSON : async function(){
             this.showOverlay = true;
@@ -361,6 +386,9 @@ export default {
 
             this.items = newBodyAry;
             Object.assign(this.org_items, this.items)
+
+            //for pagination
+            this.totalRows = this.items.length
 
             this.showOverlay = false;
 

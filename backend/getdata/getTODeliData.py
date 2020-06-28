@@ -30,6 +30,7 @@ def get_csv_data():# Yokohama takeout&deli csv
         templist.pop(0)
         #Create New Header
         takeout_shop_list['header'] = [
+            "id",
             "更新日",
             "店舗名",
             "区名",
@@ -67,7 +68,7 @@ def get_csv_data():# Yokohama takeout&deli csv
         body_list = []
         row = []
 
-        for inner_list in templist:
+        for inner_list_idx, inner_list in enumerate(templist):
             for idx, item in enumerate(inner_list):
                 item = item.replace("　"," ")#全角スペースを半角スペースに
 
@@ -88,7 +89,9 @@ def get_csv_data():# Yokohama takeout&deli csv
                 
                 else:
                     row.append(item)
-
+            
+            #先頭にIDを付加
+            row.insert(0, inner_list_idx)
             body_list.append(row)
             row = []
 

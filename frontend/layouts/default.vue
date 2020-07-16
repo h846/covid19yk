@@ -5,9 +5,10 @@
       <!--ジャンボトロン-->
       <b-row class="justify-content-center">
         <b-col sm="10">
-          <b-jumbotron class="jumbo">
+          <b-jumbotron class="jumbo" v-show="isJumbo">
             <h1 class="title">
-              テイクアウト デリバリー <br/>野毛 桜木町 みなとみらい
+              テイクアウトデリバリー<br/>
+              横浜桜木町
             </h1>
 
           </b-jumbotron>
@@ -19,9 +20,9 @@
           </div>
 
           <b-button-group>
-              <b-button variant="warning" to="/noge">野毛・みなとみらいショップリスト</b-button>
-              <b-button variant="success" to="/yokohama">テイクアウトデリバリー横浜全域検索</b-button>
-              <b-button variant="primary" to="/infections">新型コロナウィルス感染動向</b-button>
+              <b-button variant="warning" to="/noge" @click="disJumbo">野毛・みなとみらいショップリスト</b-button>
+              <b-button variant="success" to="/yokohama" @click="disJumbo">テイクアウトデリバリー横浜全域検索</b-button>
+              <b-button variant="primary" to="/infections" @click="disJumbo">新型コロナウィルス感染動向</b-button>
           </b-button-group>
 
         </b-col>
@@ -38,8 +39,18 @@
 import NavBar from '~/components/NavBar'
 
 export default {
+  data: function(){
+    return {
+      isJumbo : true
+    }
+  },
   components:{
     NavBar
+  },
+  methods: {
+    disJumbo(){
+      this.isJumbo = false;
+    }
   }
 }
 </script>

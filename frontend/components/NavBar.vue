@@ -1,6 +1,6 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="primary" style="margin-bottom: 30px;">
-    <b-navbar-brand to="/" style="font-size: 1rem">テイクアウト デリバリー 野毛 桜木町</b-navbar-brand>
+    <b-navbar-brand to="/" style="font-size: 1rem">テイクアウトデリバリー横浜桜木町</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

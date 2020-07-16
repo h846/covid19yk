@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                             <th>電話番号</th>
-                            <td>{{ shopData['電話番号']}}</td>
+                            <td><a :href="'tel:'+ shopData['電話番号']">{{ shopData['電話番号']}}</a></td>
                         </tr>
                         <tr>
                             <th>ウェブサイト</th>
@@ -128,9 +128,7 @@ export default {
         }
     },
     computed:{
-        greetings(){
-            return "Hello! "+ this.id;
-        }
+
     },
     created: async function(){
 
@@ -161,16 +159,18 @@ table{
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 10px;
+  table-layout: fixed;
+  font-size: 0.9rem;;
 
   th{
       border-bottom: solid 2px #fb5144;
       text-align: center;
-      width: 100px;
+      width: 150px;
   }
 
   td{
       border-bottom: solid 2px #ddd;
-      padding: 10px 5px;
+      padding: 5px 10px;
   }
 }
 .btn{
